@@ -14,7 +14,6 @@ import streamlit as st
 
 ## loading trained model files 
 ohe = joblib.load("ohe.pkl")
-forest = joblib.load("rfr.pkl")
 model = joblib.load("Pwr_rfr.pkl")
 
 ### UI & logic code
@@ -66,9 +65,9 @@ if st.button("estimate"):
     row=row.drop('TIME',axis=1)
     row = pd.concat([row, ohedata], axis=1)
     
-    model = round(forest.predict(row)[0])
+    prediction = round(model.predict(row)[0])
     
-    st.write(f"Estimated Power Genertion Value: {model}")
+    st.write(f"Estimated Power Genertion Value: {prediction}")
 
 
 
